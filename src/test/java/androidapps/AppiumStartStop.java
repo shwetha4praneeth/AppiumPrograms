@@ -1,9 +1,7 @@
-
 package androidapps;
 
 public class AppiumStartStop 
 {
-
 	public static void main(String[] args) throws Exception
 	{
 		//Start appium server

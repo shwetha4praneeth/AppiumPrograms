@@ -14,7 +14,6 @@ import io.appium.java_client.android.AndroidDriver;
 
 public class GraphicalGestures 
 {
-
 	public static void main(String[] args) throws Exception
 	{
 		//Install "apisdemo" app into device
