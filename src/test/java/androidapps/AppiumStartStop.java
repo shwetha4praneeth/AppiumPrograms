@@ -1,6 +1,6 @@
 package androidapps;
 
-public class AppiumStartStop 
+public class AppiumStartStop
 {
 	public static void main(String[] args) throws Exception
 	{
