@@ -5,7 +5,7 @@ import java.net.URL;
 import org.openqa.selenium.remote.CapabilityType;
 import org.openqa.selenium.remote.DesiredCapabilities;
 
-public class DCForExistingCalculatorApp
+public class LaunchAVDWithExistingCalculatorApp
 {
 	public static void main(String[] args) throws Exception
 	{

@@ -19,16 +19,16 @@ public class GraphicalGestures
 		//Install "apisdemo" app into device
 		//Pathofsdk\system-images\android-25\google_apis\x86\data\app\ApiDemos\apidemos.apk
 		//Start appium server
-		Runtime.getRuntime().exec("cmd.exe /c start cmd.exe /k \"appium\"");
-		URL u=new URL("http://0.0.0.0:4723/wd/hub");
+		Runtime.getRuntime().exec("cmd.exe /c start cmd.exe /k \"appium -a 127.0.0.1 -p 4724\"");
+		URL u=new URL("http://127.0.0.1:4724/wd/hub");
 		//Define desired capabilities related to device & app
 		DesiredCapabilities dc=new DesiredCapabilities();
 		dc.setCapability(CapabilityType.BROWSER_NAME,"");
-		dc.setCapability("deviceName","");
-		dc.setCapability("platformName","");
-		dc.setCapability("platformVersion","");
-		dc.setCapability("appPackage","");
-		dc.setCapability("appActivity","");
+		dc.setCapability("deviceName","fd51965a");
+		dc.setCapability("platformName","android");
+		dc.setCapability("platformVersion","8.1.0");
+		dc.setCapability("appPackage","com.touchboarder.android.api.demos");
+		dc.setCapability("appActivity","com.example.android.apis.graphics.FingerPaint");
 		//Launch app in device through appium server
 		AndroidDriver driver;
 		while(2>1)
@@ -42,25 +42,33 @@ public class GraphicalGestures
 			{
 			}
 		}
-		Thread.sleep(10000);
-		int[] xs = {220,650,220,650,220,650,220,650};
-		int[] ys = {450,450,800,800,1150,1150,1500,1500};
-		for(int i=0;i<8;i++)
+		//App automation
+		try
 		{
-			Point head=new Point(xs[i],ys[i]);
-			Point leftEye=head.moveBy(-50,-50);
-			Point rightEye=head.moveBy(50,-50);
-			Point mouth=head.moveBy(0,50);
-			drawCircle(driver,head,150,30);
-			drawCircle(driver,leftEye,20,20);
-			drawCircle(driver,rightEye,20,20);
-			drawCircle(driver,mouth,40,20);				
+			Thread.sleep(5000);
+			int[] xs = {200};
+			int[] ys = {300};
+			for(int i=0;i<1;i++)
+			{
+				Point head=new Point(xs[i],ys[i]);
+				Point leftEye=head.moveBy(-50,-50);
+				Point rightEye=head.moveBy(50,-50);
+				Point mouth=head.moveBy(0,50);
+				drawCircle(driver,head,150,30);
+				//drawCircle(driver,leftEye,20,20);
+				//drawCircle(driver,rightEye,20,20);
+				//drawCircle(driver,mouth,40,20);				
+			}
+		}
+		catch(Exception ex)
+		{
+			System.out.println(ex.getMessage());
 		}
 		//Close App
 		driver.closeApp();
 		//Stop appium server
-		Runtime.getRuntime().exec("taskkill /F /IM node.exe");
-		Runtime.getRuntime().exec("taskkill /F /IM cmd.exe");
+		//Runtime.getRuntime().exec("taskkill /F /IM node.exe");
+		//Runtime.getRuntime().exec("taskkill /F /IM cmd.exe");
 	}
 	public static void drawCircle(AndroidDriver driver, Point origin, double radius, int steps)
 	{
